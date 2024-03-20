@@ -116,8 +116,32 @@
 // let newClone = {...newUser };
 // console.log(newClone);
 
-let user = {};
+// let user = {};
 // let's create a circular reference:
 // user.me references the user itself
-user.me = user;
-console.log(user);
+// user.me = user;
+// console.log(user);
+
+
+const slides = document.querySelectorAll(".slide");
+let count = 0;
+
+slides.forEach((slide, index) => {
+    slide.style.left = `${index * 100}%`;
+})
+
+function goNext() {
+    count === slides.length - 1 ? count = 0 : count++;
+    slideImage();
+};
+
+function goPrev() {
+    count <= 0 ? count = slides.length - 1 : count--;
+    slideImage();
+};
+
+const slideImage = () => {
+    slides.forEach((slide) => {
+        slide.style.transform = `translateX(-${count * 100}%)`
+    })
+}
